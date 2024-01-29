@@ -1,0 +1,1 @@
+numbers = [string.split() for string in input()]
