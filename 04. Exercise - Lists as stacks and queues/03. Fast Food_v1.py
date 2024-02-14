@@ -2,18 +2,19 @@ from collections import deque
 
 food = int(input())
 # Using map()
-orders_map = deque(map(int, input().split()))
+orders = deque(map(int, input().split()))
 # Using list comprehension
 orders_list_comp = deque([int(x) for x in input().split()])
 
-print(max(orders_map))
+print(max(orders))
 
-for order in orders_map.copy():
+while orders:
+    order = orders.popleft()
     if food >= order:
-        orders_map.popleft()
+        orders.popleft()
         food -= order
     else:
-        print(f'Orders left:', *orders_map)  # join can be used here
+        print(f'Orders left:', *orders) # join can be used here
         break
 else:
     print('Orders complete')
