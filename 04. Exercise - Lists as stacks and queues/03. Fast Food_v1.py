@@ -11,7 +11,6 @@ print(max(orders))
 while orders:
     order = orders.popleft()
     if food >= order:
-        orders.popleft()
         food -= order
     else:
         print(f'Orders left:', *orders) # join can be used here

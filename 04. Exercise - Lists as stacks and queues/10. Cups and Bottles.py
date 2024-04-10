@@ -1,29 +1,22 @@
 from collections import deque
 
-cups = deque([int(x) for x in input().split()])
-bottles = [int(x) for x in input().split()]
+cups = deque([int(cup) for cup in input().split()])
+bottles = deque([int(bottle) for bottle in input().split()])
 
-wasted_water = 0
+wasted_liters = 0
 
-for cup in cups.copy():
-    bottle = bottles.pop()
-    if bottle > cup:
-        wasted_water += bottle - cup
-        cups.popleft()
+while cups and bottles:
+    current_cup = cups.popleft()
+    current_bottle = bottles.pop()
+
+    if current_cup <= current_bottle:
+        wasted_liters += current_bottle - current_cup
     else:
-        cup -= bottle
-        for b in bottles[::-1]:
-            while cup > 0:
-                cup -= b
+        cups.appendleft(current_cup - current_bottle)
 
-
+if cups:
+    print(f"Cups:", *cups)
 else:
-    if bottles:
-        print(f'Bottles: {" ".join(str(i) for i in bottles)}')
-        wasted_water += sum(bottles)
-    elif cups:
-        print(f'Cups {" ".join(str(i) for i in cups)}')
-    print(wasted_water)
-    # pass
+    print(f"Bottles:", *bottles)
 
-# TODO not finished
+print(f"Wasted litters of water: {wasted_liters}")

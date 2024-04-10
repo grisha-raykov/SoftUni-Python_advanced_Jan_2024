@@ -1,20 +1,21 @@
 numbers = []
 
 for _ in range(int(input())):
-    numbers_data = [int(x) for x in input().split()]
+    numbers_data = input().split()  # "1 97" -> ["1", "97"] -> [1, 97]
     command = numbers_data[0]
 
-    if command == 1:
+    if command == "1":
         numbers.append(numbers_data[1])
-    elif command == 2:
-        # Check if the stack is not empty. If its empty and we apply pop() it will produce an error
+    elif command == "2":
         if numbers:
             numbers.pop()
-    elif command == 3:
+    elif command == "3":
         if numbers:
             print(max(numbers))
-    elif command == 4:
-        print(min(numbers))
+    elif command == "4":
+        if numbers:
+            print(min(numbers))
 
 numbers.reverse()
-print(*numbers)
+
+print(*numbers, sep=", ")
